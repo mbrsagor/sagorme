@@ -1,0 +1,56 @@
+{% extends 'app/base.html' %}
+
+<!-- load image/css/js file load -->
+{% load static %}
+{% load fontawesome %}
+
+{% block sidebar %}
+    <div class="sidebar">
+        <div class="widget">
+            <h2>
+                <a href="{% url 'home' %}">সাগরের নোটখাতা</a>
+            </h2>
+        </div>
+        <div class="widget">
+            <h3 class="widget-title">Quick Navigation</h3>
+            <nav>
+                <ul>
+                    {% for menu in menus %}
+                    <li><a href="{{menu.menu_url}}">{{menu.name}}</a></li>
+                    {% endfor %}
+                </ul>
+            </nav>
+        </div>
+        {% for i in widget %}
+        <div class="widget">
+            <h3 class="widget-title">{{i.tagline}}</h3>
+            {{i.author_body |safe }} <br />
+            <h3 class="widget-title">Find Me Social</h3>
+            <div class="social_media">
+                
+                {% for f in fnt %}
+                    
+                <a target="blank" href="{{f.solid_link}}"><i>{{ f.icon.as_html }}</i></a>
+                {% endfor %}
+
+            </div>
+        </div>
+        {% endfor %}
+        <div class="widget">
+            <div class="search-box">
+                <form id="search-form" method="GET" action="">
+                    <input placeholder="search..." id="search-field" name="q" type="text">
+                    <button type="submit" class="submit"><i class="glyphicon glyphicon-search"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+<!-- end block sidebar -->
+<!-- block main content -->
+
+{% block content %}
+
+{% endblock %}
+
+<!-- end block main content -->

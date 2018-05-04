@@ -1,0 +1,64 @@
+{% extends 'app/base.html' %}
+
+<!-- load image/css/js file load -->
+{% load static %}
+
+<!-- block title -->
+{% block title %} mbr sagor | My tech book {% endblock %}
+<!-- end block title -->
+
+<!-- block sidebar -->
+{% block sidebar %}
+{% include 'blogapp/widget.html' %}
+{% endblock %}
+<!-- end block sidebar -->
+
+<div class="col-lg-8">
+    <div class="mainContentArea">
+
+    <!-- block main content -->
+
+    {% block content %}
+        <div class="single_post">
+            <h2>{{single_obj.title}}</h2>
+            <div class="post_info">
+                <i class="fa fa-calendar"></i> <span>{{single_obj.posted_on}}</span> <i class="fa fa-user"></i>
+                <span>{{single_obj.author.name}}</span> <i class="fa fa-link"></i> {{single_obj.category}}
+            </div>
+            <div class="post_content">
+                {% if not single_obj.image %}
+                    <img src="http://via.placeholder.com/350x150">
+                    {% else %}
+                    <img src="/media/{{single_obj.image}}">
+                {% endif %}
+                {{single_obj.body |safe}}
+
+                <!-- Related post area -->
+                <div class="related_post">
+                    <h2>Related Post</h2>
+                    <div class="row">
+                    {% for post in related_post %}
+                        <div class="col-lg-4">
+                            <div class="related">
+                                <h3><a href="">{{post.title}}</a></h3>
+                                <p>Posted On: {{post.posted_on}}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <!-- End Related post area -->
+                <div class="comment_form">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <textarea placeholder="Write your comment" name="comments" id="comment" cols="80"></textarea>
+                        <input type="submit" value="submit comment">
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+
+    <!-- end block main content -->
+    </div>
+</div>

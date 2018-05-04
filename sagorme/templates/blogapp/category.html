@@ -1,0 +1,40 @@
+{% extends 'app/base.html' %}
+
+<!-- load image/css/js file load -->
+{% load static %}
+
+<!-- block title -->
+{% block title %} Category | sagor{% endblock %}
+<!-- end block title -->
+
+<!-- block sidebar -->
+{% block sidebar %}
+{% include 'blogapp/widget.html' %}
+{% endblock %}
+<!-- end block sidebar -->
+
+<!-- block main content -->
+
+{% block content %}
+<div class="mainContentArea">
+  
+    {% for post in post_list %}
+    <div class="single_post">
+        <h2>
+            <a href="{% url 'single_page' post.id %}">{{post.title}}</a>
+        </h2>
+        <div class="post_info">
+            <i class="fa fa-calendar"></i> <span>{{post.posted_on}}</span> <i class="fa fa-user"></i>
+            <span><a href="{% url 'author' post.author.id %}">{{post.author.name}}</a></span> <i class="fa fa-link"></i><a href="{% url 'category' post.category.name %}">{{post.category.name}}</a>
+        </div>
+        <div class="post_content">
+            {{post.body |safe|truncatewords:88}}
+            <br /> <a class="readmore_btn"href="{% url 'single_page' post.id %}">read more...</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
+
+<!-- end block main content -->

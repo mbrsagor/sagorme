@@ -1,0 +1,56 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Include All CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/prettify.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/sons-of-obsidian.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/preset.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- End Include All CSS -->
+    <link rel="icon" type="image/x-icon" href="{% static 'images/fvicon.png' %}"/>
+
+
+    <!-- block title -->
+    <title>{% block title %}  {% endblock %}</title>
+    <!-- end block title -->
+
+</head>
+<body onload="PR.prettyPrint()">
+
+    <!-- Main_area end section -->
+    <section class="Main_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                <!-- block sidebar -->
+                {% block sidebar %}
+                {% include 'blogapp/widget.html' %}
+                {% endblock %}
+                <!-- end block sidebar -->
+                </div>
+                <div class="col-lg-8">
+                <!-- block main content -->
+                {% block content %}
+                    
+                {% endblock %}
+                <!-- end block main content -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Main_area end section -->
+<!-- Include All JS -->
+<script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/prettify.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/active.js' %}"></script>
+</body>
+</html>
